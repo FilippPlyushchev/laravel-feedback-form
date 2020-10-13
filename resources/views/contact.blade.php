@@ -4,7 +4,7 @@
 @section('content')
     <h1 class="mb-2 text-left">Форма обратной связи</h1>
 
-    <form class="form-horizontal" method="POST" action="{{ route('contact-form') }}">
+    <form class="form-horizontal" method="POST" action="{{ route('contact-form') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="Topic">Тема: </label>

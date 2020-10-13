@@ -26,7 +26,7 @@ class ContactRequest extends FormRequest
         return [
             'topic' => 'required|min:5|max:50',
             'message' => 'required|min:20|max:300',
-            'file' => 'required|max:100'
+            'file' => 'required|max:1000'
         ];
     }
 
