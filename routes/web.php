@@ -28,9 +28,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'role:manager'], function() {
-    Route::get('/panel', function() {
-        return view('panel');
-    });
+    Route::get('/panel', 'PanelController@index')->name('panel');
+    Route::get('/panel/update/{id}', 'PanelController@update')->name('update-status');
 });
 
 Route::group(['middleware' => 'role:client'], function() {

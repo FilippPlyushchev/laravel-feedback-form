@@ -23,6 +23,8 @@ class ContactController extends Controller
         $contact->topic = $req->input('topic');
         $contact->message = $req->input('message');
         $contact->email = $req->input('email');
+        $contact->user_name = $req->input('user_name');
+        $contact->status = false;
 
         if($req->hasFile('file')) {
             $file = $req->file('file');
