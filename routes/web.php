@@ -15,15 +15,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (Auth::guest()) {
+        return redirect('login');
+    }
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'role:manager'], function() {
-    Route::get('/dashboard', function() {
+    Route::get('/panel', function() {
         return 'Добро пожаловать, менеджер';
+    });
+});
+
+Route::group(['middleware' => 'role:client'], function() {
+    Route::get('/contact', function() {
+        return 'Добро пожаловать, клиент';
     });
 });
