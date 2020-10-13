@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,7 @@ Route::group(['middleware' => 'role:manager'], function() {
 Route::group(['middleware' => 'role:client'], function() {
     Route::get('/contact', function() {
         return view('contact');
-    });
+    })->name('contact');
+
+    Route::post('/contact/submit', 'ContactController@submit')->name('contact-form');
 });
