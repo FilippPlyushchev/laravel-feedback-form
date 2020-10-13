@@ -17,20 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (Auth::guest()) {
         return redirect('login');
+    }elseif(auth()->check() && auth()->user()->hasRole('manager')){
+        return redirect('panel');
+    }elseif(auth()->check() && auth()->user()->hasRole('client')){
+        return redirect('contact');
     }
-    return view('welcome');
 });
 
 Auth::routes();
 
 Route::group(['middleware' => 'role:manager'], function() {
     Route::get('/panel', function() {
-        return 'Добро пожаловать, менеджер';
+        return view('panel');
     });
 });
 
 Route::group(['middleware' => 'role:client'], function() {
     Route::get('/contact', function() {
-        return 'Добро пожаловать, клиент';
+        return view('contact');
     });
 });
