@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
         $user1->name = 'Jhon Deo';
         $user1->email = 'jhon@deo.com';
         $user1->password = bcrypt('secret');
+        $user1->last_topic = 0;
         $user1->save();
         $user1->roles()->attach($manager);
         $user1->permissions()->attach($manageUsers);
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
         $user2->name = 'Mike Thomas';
         $user2->email = 'mike@thomas.com';
         $user2->password = bcrypt('secret');
+        $user2->last_topic = 0;
         $user2->save();
         $user2->roles()->attach($client);
         $user2->permissions()->attach($createRequests);

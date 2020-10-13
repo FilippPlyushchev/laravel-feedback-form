@@ -18,7 +18,7 @@
         </div>
 
         <div class="d-none field-post-created_at required">
-            <input type="email" id="email" class="form-control" name="email" value="test@test.ru" aria-required="true">
+            <input type="email" id="email" class="form-control" name="email" value="{{ auth()->user()->email }}" aria-required="true">
         </div>
 
         <div class="form-group">
