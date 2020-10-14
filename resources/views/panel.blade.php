@@ -20,7 +20,7 @@
         <tr>
             <th scope="row">{{ $topic->id }}</th>
             <td>{{ $topic->topic }}</td>
-            <td>{{ $topic->user_name }}</td>
+            <td>{{ $topic->name }}</td>
             <td>{{ $topic->email }}</td>
             <td><a href="{{'/path/' . $topic->file}}" target="_blank">{{ $topic->file }}</a></td>
             <td>{{ $topic->created_at }}</td>

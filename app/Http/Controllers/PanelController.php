@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\DB;
 class PanelController extends Controller
 {
     public function index(){
-        $topics = Contact::all();
+        $topics = DB::table('contacts')
+            ->join('users', 'users.id', '=', 'contacts.user_id')
+            ->select('contacts.*', 'users.name', 'users.email')
+            ->get();
         return view('panel', compact('topics'));
     }
 

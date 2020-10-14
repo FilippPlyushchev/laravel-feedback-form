@@ -17,10 +17,9 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('topic');
             $table->string('message');
-            $table->string('email');
-            $table->string('user_name');
             $table->string('file');
             $table->boolean('status');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

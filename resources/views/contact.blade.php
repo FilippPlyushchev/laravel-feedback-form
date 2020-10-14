@@ -18,14 +18,6 @@
                       name="message"></textarea>
         </div>
 
-        <div class="d-none field-post-created_at required">
-            <input type="email" id="email" class="form-control" name="email" value="{{ auth()->user()->email }}" aria-required="true">
-        </div>
-
-        <div class="d-none field-post-created_at required">
-            <input type="text" id="user_name" class="form-control" name="user_name" value="{{ auth()->user()->name }}" aria-required="true">
-        </div>
-
         <div class="form-group">
             <label for="Topic">Файл: </label>
             <input type="file" class="form-control-file" id="file" name="file">
