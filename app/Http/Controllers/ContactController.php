@@ -6,6 +6,7 @@ use App\Contact;
 use App\Mail\TopicSent;
 use App\User;
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    /**
+     * @param ContactRequest $req
+     * @return RedirectResponse*
+     */
     public function submit(ContactRequest $req){
 
         if (! Auth::user()->canSend()) {
