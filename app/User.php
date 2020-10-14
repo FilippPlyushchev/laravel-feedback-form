@@ -42,6 +42,7 @@ class User extends Authenticatable
         return $this->hasMany('App\User', 'id');
     }
 
+
     /**
      * The user topic sending time limit.
      *

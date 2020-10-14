@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Mail\TopicSent;
 use App\User;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -34,7 +37,26 @@ class ContactController extends Controller
         $contact->save();
 
         Auth::user()->updateLastTopic();
+        self::sendTopicMessage($contact);
 
         return redirect()->route('contact')->with('success', 'Сообщение было отправлено');
+    }
+
+    /**
+     * Send topic messages to users with admin permission.
+     *
+     * @param Contact $topic
+     * @return void
+     */
+    public function sendTopicMessage(Contact $topic)
+    {
+        $managers = DB::table('users')
+            ->join('users_roles', 'users_roles.user_id', '=', 'users.id')
+            ->where('users_roles.role_id', '=', 1)
+            ->select('users.email', 'users.name')
+            ->get();
+        foreach ($managers as $manager) {
+            Mail::to($manager->email)->queue(new TopicSent($topic, $manager));
+        }
     }
 }
